@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      username: oubrik
+      password: oubrik
+      database: customer
+      authentication-database: admin
+server:
+  port: 8090
