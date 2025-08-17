@@ -3,6 +3,7 @@ package com.oubrik.ecommerce.customer;
 import static java.lang.String.format;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class CustomerService {
     }
 
     public List<CustomerResponse> findAllCustomers() {
-        return repository.findAll().stream().map((mapper::toCustomerResponse)).toList();
+        return repository.findAll().stream().map((mapper::toCustomerResponse)).collect(Collectors.toList());
     }
 
     public boolean isCustomerPresent(String customerId) {
