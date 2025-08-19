@@ -4,6 +4,8 @@ spring:
       username: oubrik
       password: oubrik
       database: customer
+      host: localhost
+      port: 27017 
       authentication-database: admin
 server:
   port: 8090
