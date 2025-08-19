@@ -38,20 +38,20 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.findAllCustomers());
     }
 
-    @GetMapping("/exists/{customer_id}")
+    @GetMapping("/exists/{customer-id}")
     public ResponseEntity<Boolean> isCustomerPresent(
-            @PathVariable("customer_id") String customerId) {
+            @PathVariable("customer-id") String customerId) {
         return ResponseEntity.ok(customerService.isCustomerPresent(customerId));
     }
 
-    @GetMapping("/{customer_id}")
+    @GetMapping("/{customer-id}")
     public ResponseEntity<CustomerResponse> getCustomerById(
-            @PathVariable("customer_id") String customerId) {
+            @PathVariable("customer-id") String customerId) {
         return ResponseEntity.ok(customerService.findById(customerId));
     }
 
-    @DeleteMapping("/{customer_id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable("customer_id") String customerId) {
+    @DeleteMapping("/{customer-id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("customer-id") String customerId) {
         customerService.deleteCustomer(customerId);
         return ResponseEntity.noContent().build();
     }
