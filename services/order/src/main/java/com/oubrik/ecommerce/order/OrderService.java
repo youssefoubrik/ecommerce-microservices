@@ -13,6 +13,8 @@ import com.oubrik.ecommerce.kafka.OrderConfirmation;
 import com.oubrik.ecommerce.kafka.OrderProducer;
 import com.oubrik.ecommerce.orderline.OrderLineRequest;
 import com.oubrik.ecommerce.orderline.OrderLineService;
+import com.oubrik.ecommerce.payment.PaymentClient;
+import com.oubrik.ecommerce.payment.PaymentRequest;
 import com.oubrik.ecommerce.product.ProductClient;
 import com.oubrik.ecommerce.product.ProductPurchaseRequest;
 
@@ -27,6 +29,7 @@ public class OrderService {
         private final OrderMapper orderMapper;
         private final OrderLineService orderLineService;
         private final OrderProducer orderProducer;
+        private final PaymentClient paymentClient;
 
         public Integer createOrder(OrderRequest order) {
                 CustomerResponse customerResponse = customerClient.findCustomerById(order.customerId())
@@ -43,7 +46,10 @@ public class OrderService {
                                                         productPurchaseRequest.productId(),
                                                         productPurchaseRequest.quantity()));
                 }
-                // TODO payment process
+                paymentClient.createPayment(new PaymentRequest(
+                                order.amount(),
+                                order.paymentMethod(), order.id(), order.reference(), customerResponse));
+
                 orderProducer.sendOrderConfirmation(new OrderConfirmation(
                                 order.reference(),
                                 order.amount(),
