@@ -25,19 +25,20 @@ public class ProductService {
     }
 
     @Transactional
-    public List<ProductPurchaseResponse> purchaseProducts(List<ProductPurchaseRequest> request) {
+    public List<ProductPurchaseResponse> purchaseProducts(List<ProductPurchaseRequest> purchaseRequests) {
 
-        var productIds = request.stream()
+        var productIds = purchaseRequests.stream()
                 .map(ProductPurchaseRequest::productId)
                 .distinct()
                 .collect(Collectors.toList());
 
-        var products = productRepository.findAllById(productIds);
+        var storedProducts = productRepository.findAllById(productIds);
 
-        var productMap = products.stream()
+        var productMap = storedProducts.stream()
                 .collect(Collectors.toMap(Product::getId, product -> product));
 
-        for (ProductPurchaseRequest purchaseRequest : request) {
+        List<ProductPurchaseResponse> responses = new ArrayList<>();
+        for (ProductPurchaseRequest purchaseRequest : purchaseRequests) {
             if (!productMap.containsKey(purchaseRequest.productId())) {
                 throw new ProductNotFoundException("Product not found with ID: " + purchaseRequest.productId());
             }
@@ -49,11 +50,6 @@ public class ProductService {
                         product.getName(), product.getId(), purchaseRequest.quantity(), product.getAvailableQuantity());
                 throw new InsufficientQuantityException(errorMessage);
             }
-        }
-
-        List<ProductPurchaseResponse> responses = new ArrayList<>();
-        for (ProductPurchaseRequest purchaseRequest : request) {
-            Product product = productMap.get(purchaseRequest.productId());
 
             product.setAvailableQuantity(product.getAvailableQuantity() - purchaseRequest.quantity());
 
