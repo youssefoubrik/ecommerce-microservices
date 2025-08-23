@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ProductClient {
-    @Value("${application.config.product-url}")
+    @Value("${spring.application.config.product-url}")
     private String productUrl;
     private final RestTemplate restTemplate;
 

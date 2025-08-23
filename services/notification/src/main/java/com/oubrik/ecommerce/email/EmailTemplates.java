@@ -1,4 +1,4 @@
-package com.oubrik.email;
+package com.oubrik.ecommerce.email;
 
 import lombok.Getter;
 

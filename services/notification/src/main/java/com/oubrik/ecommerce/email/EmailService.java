@@ -1,6 +1,6 @@
-package com.oubrik.email;
+package com.oubrik.ecommerce.email;
 
-import static com.oubrik.email.EmailTemplates.PAYMENT_CONFIRMATION;
+import static com.oubrik.ecommerce.email.EmailTemplates.PAYMENT_CONFIRMATION;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;

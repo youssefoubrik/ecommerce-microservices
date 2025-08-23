@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.oubrik.ecommerce.kafka.order.OderConfirmation;
+import com.oubrik.ecommerce.kafka.order.OrderConfirmation;
 import com.oubrik.ecommerce.kafka.payment.PaymentConfirmation;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +25,6 @@ public class Notification {
     private String id;
     private NotificationType notificationType;
     private LocalDateTime notificationDate;
-    private OderConfirmation orderConfirmation;
+    private OrderConfirmation orderConfirmation;
     private PaymentConfirmation paymentConfirmation;
 }

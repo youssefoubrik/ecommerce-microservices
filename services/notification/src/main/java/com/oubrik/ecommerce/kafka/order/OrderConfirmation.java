@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.oubrik.ecommerce.kafka.payment.PaymentMethod;
 
-public record OderConfirmation(
+public record OrderConfirmation(
         String orderReference,
         BigDecimal totalAmount,
         PaymentMethod paymentMethod,

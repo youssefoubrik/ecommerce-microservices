@@ -1,8 +1,8 @@
 spring:
   data:
     mongodb:
-      username: oubrik
-      password: oubrik
+      username: admin
+      password: admin
       database: customer
       host: localhost
       port: 27017
@@ -13,11 +13,11 @@ spring:
       auto-offset-reset: earliest
       bootstrap-servers:
         - localhost:9092
-      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "*"
-        spring.json.type.mapping: orderConfirmation:com.oubrik.ecommerce.kafka.OrderConfirmation,paymnetConfirmation:com.oubrik.ecommerce.notification.PaymentNotificationRequest
+        spring.json.type.mapping: orderConfirmation:com.oubrik.ecommerce.kafka.order.OrderConfirmation,paymentConfirmation:com.oubrik.ecommerce.kafka.payment.PaymentConfirmation
   mail:
     host: localhost
     port: 1025
