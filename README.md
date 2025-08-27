@@ -28,13 +28,25 @@ The system follows a microservices architecture pattern where each service is:
 
 ## Technologies
 
+### Backend
+
 - **Spring Boot**: Framework for creating stand-alone Spring applications
 - **Spring Cloud**: Tools for common distributed system patterns
-- **Eureka Server**: Service discovery
-- **Spring Cloud Config**: Centralized configuration
-- **Spring Cloud Gateway**: API Gateway
-- **Maven**: Dependency management and build tool
-- **Docker**: Containerization platform
+- **Eureka Server**: Service discovery and registration
+- **Spring Cloud Config**: Centralized configuration management
+- **Spring Cloud Gateway**: API Gateway for routing and filtering
+- **Spring Cloud OpenFeign**: Declarative REST client
+- **Spring Data JPA**: Data persistence and ORM
+- **Spring Security**: Authentication and authorization
+- **PostgreSQL**: Primary database for services
+- **MongoDB**: Database for specific services requiring document storage
+- **Apache Kafka**: Event streaming platform for asynchronous communication
+
+### DevOps & Tools
+
+- **Maven**: Dependency management and build automation
+- **Docker**: Application containerization
+- **Docker Compose**: Multi-container Docker applications
 
 ## Getting Started
 
